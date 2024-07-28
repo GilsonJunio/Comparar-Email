@@ -29,6 +29,12 @@ let emails_json =
 let email_Teste = "gilsonjunio@email.com"
 	console.log(email_Teste)
 
+/*
+Chame a função comparar_Email('email') no console
+Coloque o email para comparar com o banco de dados	
+
+*/
+
 function comparar_Email(email){
 	let procurar_EmailIgual = emails_json.find(email_1 => emails_json[0] === email);
 
