@@ -25,10 +25,6 @@ let emails_json =
 	console.log(emails_json)
 	console.log(emails_json[0])
 
-
-let email_Teste = "gilsonjunio@email.com"
-	console.log(email_Teste)
-
 function comparar_Email(email){
 	let procurar_EmailIgual = emails_json.find(email_1 => emails_json[0] === email);
 
