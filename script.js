@@ -1,3 +1,10 @@
+/*TODO:
+ATIVAR A FUNÇÃO verificacao_Usuarios() QUANDO APERTAR O BOTÃO
+
+
+
+*/
+
 /*
 A função buscar_Dados() requisita um arquivo json no meu repositório;
 Após os devidos tratamentos, os dados JSON são atribuídos à variável usuarios;
@@ -16,7 +23,8 @@ aplique ".then(parametro => {console.log(parametro)})" para averiguar o array no
 */
 
 
-let email_Repassado = "joao@exemplaaaaao.com"
+let email_Repassado = document.getElementsByClassName('email')[0].value
+let botao_entrar = document.getElementsByClassName('botao')[0]
 
 async function buscar_Dados(){
 	//busque seus usuarios abaixo
@@ -36,9 +44,10 @@ function verificar_Usuarios(usuarios){
 	usuarios = dados.then((usuarios) => {			
 			console.log(usuarios)
 			let procurar_Email_Igual = usuarios.find(usuarios => {
-				console.log(usuarios.email === email_Repassado);
-
+//				console.log(usuarios.email === email_Repassado);
+				console.log(usuarios)
 				let existe_Email_Igual = usuarios.email === email_Repassado;
+					console.log("Verificando se existe email igual em: " + JSON.stringify(usuarios))
 					console.log(existe_Email_Igual)
 
 				if(existe_Email_Igual === true){
@@ -47,14 +56,17 @@ function verificar_Usuarios(usuarios){
 				}
 				alert('O Email não existe!')
 				return false
-		})	
+		})
+//	return procurar_Email_Igual	
 	})
 
-}
-if(verificar_Usuarios() === false){
-	alert('taaaaaaaa')
+
 }
 
+botao_entrar.addEventListener('click', a => {
+	let b = verificar_Usuarios()
+	console.log(b)
+})
 /*
 Chame a função comparar_Email('email') no console
 Coloque o email para comparar com o banco de dados	
