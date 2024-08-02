@@ -1,8 +1,12 @@
 /*TODO:
-ATIVAR A FUNÇÃO verificacao_Usuarios() QUANDO APERTAR O BOTÃO
+ATIVAR A FUNÇÃO verificacao_Usuarios() QUANDO APERTAR O BOTÃO;
 
 
 
+
+*/
+/*BUGS
+Não consigo retornar booleano na função verificar_Usuario(). Preciso de booleano para redirecionar à outra página.
 */
 
 /*
@@ -38,14 +42,17 @@ async function buscar_Dados(){
 
 	return usuarios
 }
+/*
 function verificar_Usuarios(usuarios){
 	//criar usuários
 	let dados = buscar_Dados()
 	usuarios = dados.then((usuarios) => {			
 			console.log(usuarios)
+			
 			let procurar_Email_Igual = usuarios.find(usuarios => {
 //				console.log(usuarios.email === email_Repassado);
 				console.log(usuarios)
+
 				let existe_Email_Igual = usuarios.email === email_Repassado;
 					console.log("Verificando se existe email igual em: " + JSON.stringify(usuarios))
 					console.log(existe_Email_Igual)
@@ -56,10 +63,45 @@ function verificar_Usuarios(usuarios){
 				}
 				alert('O Email não existe!')
 				return false
-		})
-//	return procurar_Email_Igual	
+		}) 	
+		console.log(procurar_Email_Igual)
 	})
+}
+*/
 
+/*
+ideia: fazer a funcao captar se algum email igual foi detectado e assim, retornar existe_Email_Igual com valor booelano
+Consegui resolver parcialmente, agora a variavel procurar_Email_Igual retorna o array com email igual
+
+*/
+function verificar_Usuarios(existe_Email_Igual){
+	//criar usuários
+	let dados = buscar_Dados()
+	let usuarios = dados.then((usuarios) => {			
+			console.log(usuarios)
+			
+			let procurar_Email_Igual = usuarios.find(usuarios => {
+//				console.log(usuarios.email === email_Repassado);
+				console.log(usuarios)
+
+				let existe_Email_Igual = usuarios.email === email_Repassado;
+					console.log(`Verificando se existe email igual à ${email_Repassado} em: ` + JSON.stringify(usuarios))
+					console.log(existe_Email_Igual)
+					if(existe_Email_Igual === true){
+						console.log('1111111111')
+						return usuarios
+					}
+					else{
+						console.log('000000000')
+					}
+
+		}) 	
+		console.log(procurar_Email_Igual)
+		
+
+	})
+	console.log(existe_Email_Igual)
+	return existe_Email_Igual
 
 }
 
