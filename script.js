@@ -52,3 +52,6 @@ function verificar_Usuarios(existe_Email_Igual){
 	console.log(usuarios)
 	return usuarios
 }
+botao_entrar.addEventListener('click', a => {
+	let existe_Email_Igual = verificar_Usuarios()
+}
