@@ -1,5 +1,5 @@
 /*TODO:
-ATIVAR A FUNÇÃO verificacao_Usuarios() QUANDO APERTAR O BOTÃO;
+ATIVAR A FUNÇÃO verificacao_Usuarios() QUANDO APERTAR O BOTÃO; Funcionando
 
 
 
@@ -7,6 +7,12 @@ ATIVAR A FUNÇÃO verificacao_Usuarios() QUANDO APERTAR O BOTÃO;
 */
 /*BUGS
 Não consigo retornar booleano na função verificar_Usuario(). Preciso de booleano para redirecionar à outra página.
+04/08/2024 Consegui retornar booleano na função verificar_Usuario(), porém ao atribuir ela numa variavel retorna uma promise com valor booleano
+
+04/08/2024 
+Resolvi o problema de retornar booleano, eu apenas condicionei um redirecionamento 
+mediante .then() atribuir true no parametro da função callback 
+
 */
 
 /*
@@ -37,7 +43,7 @@ async function buscar_Dados(){
 	const tratar = await requisicao.json()
 		//console.log(tratar)
 
-	usuarios = tratar.usuarios
+	let usuarios = tratar.usuarios
 		//console.log(usuarios)
 
 	return usuarios
@@ -85,29 +91,42 @@ function verificar_Usuarios(existe_Email_Igual){
 				console.log(usuarios)
 
 				let existe_Email_Igual = usuarios.email === email_Repassado;
+
 					console.log(`Verificando se existe email igual à ${email_Repassado} em: ` + JSON.stringify(usuarios))
 					console.log(existe_Email_Igual)
-					if(existe_Email_Igual === true){
-						console.log('1111111111')
-						return usuarios
-					}
-					else{
-						console.log('000000000')
-					}
 
+					return existe_Email_Igual
 		}) 	
+
 		console.log(procurar_Email_Igual)
-		
+
+		if(procurar_Email_Igual){
+			alert('Este email já foi cadastrado!')
+			procurar_Email_Igual = true
+			return procurar_Email_Igual
+		}
+		else if(procurar_Email_Igual === undefined){
+			return false
+		}
+		else{
+			alert('Email cadastrado com sucesso!')
+//			window.location.replace('https://google.com')
+		}
+
 
 	})
-	console.log(existe_Email_Igual)
-	return existe_Email_Igual
-
+	console.log(usuarios)
+	return usuarios
 }
 
 botao_entrar.addEventListener('click', a => {
-	let b = verificar_Usuarios()
-	console.log(b)
+	let existe_Email_Igual = verificar_Usuarios()
+	let redirecionar = existe_Email_Igual.then( (email_Igual) => {
+		console.log(email_Igual);
+		if(email_Igual != true){
+			//window.location.href = 'https://google.com'
+		} 
+	})
 })
 /*
 Chame a função comparar_Email('email') no console
