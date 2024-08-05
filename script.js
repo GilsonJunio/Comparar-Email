@@ -30,3 +30,6 @@ function verificar_Usuarios(existe_Email_Igual){
 	})
 	return usuarios
 }
+botao_entrar.addEventListener('click', a => {
+	let existe_Email_Igual = verificar_Usuarios()
+}
